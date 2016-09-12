@@ -11,12 +11,17 @@ import android.view.ViewGroup;
  */
 public class MainActivityFragment extends Fragment {
 
-    public MainActivityFragment() {
+    public MainActivityFragment()
+    {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+                             Bundle savedInstanceState)
+    {
+        //Создание вида фрагмента
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        return view;
     }
+
 }
