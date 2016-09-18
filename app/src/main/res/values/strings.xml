@@ -2,4 +2,7 @@
     <string name="app_name">Quizer</string>
     <string name="action_settings">Settings</string>
     <string name="string_selectQuiz">Selct quize</string>
+    <string name="literal_filepath_quiz_settings" translatable="false">quiz/quiz_settings.xml</string>
+    <string name="literal_app_preferences_filename" translatable="false">preferences.xml</string>
+    <string name="settings_flag_inited" translatable="false">inited</string>
 </resources>
