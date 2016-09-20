@@ -1,6 +1,7 @@
 package ru.ppasoft.quizer;
 
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStreamReader;
 
 import android.content.Context;
 
@@ -56,41 +58,45 @@ public class MainActivity extends AppCompatActivity
 
     //Initialisation of the app
     private void Init()
+
     {
+        Context context = this.getApplicationContext();
+        String preferencesFileName = getString(R.string.filename_app_preferences);
+        SharedPreferences preferences = context.getSharedPreferences(preferencesFileName,context.MODE_PRIVATE);
+        boolean fInited = false;
+        fInited =  preferences.getBoolean(APPINITED, false);
+        if(fInited)
+            return;
         CreateInitialFileStruct();//Creating initial file structure
     }
     //Creating initial files
     private void CreateInitialFileStruct()
     {
         Context context = this.getApplicationContext();
-        String preferencesFileName = getString(R.string.literal_app_preferences_filename);
-        SharedPreferences preferences = context.getSharedPreferences(preferencesFileName,context.MODE_PRIVATE);
-
-        boolean fInited = false;
-        fInited =  preferences.getBoolean(APPINITED, false);
-        if(fInited)
-            return;
+        AssetManager assets = getAssets();
         try
         {
-            File file = new File(context.getFilesDir(), getString(R.string.literal_filepath_quiz_settings));
-            boolean b = file.exists();
-            if(!file.exists() || !file.isFile())
-            {
-                boolean res = file.mkdirs();
-                if(!res)
-                    Log.wtf("MainActivity", "MainActivity.CreateInitialFileStruct: file.mkdirs return false");
-                res = file.createNewFile();
-                FileWriter writer = new FileWriter(file);
-                XmlResourceParser xmlRes = getResources().getXml(R.xml.quiz_manager);
-                String str = xmlRes.toString();
-                writer.write(xmlRes.toString());
-            }
-            int l = (int) file.length();
-            FileReader reader = new FileReader(file);
-            char ch[] = new char[l];
-            reader.read(ch);
             String str = "";
-            //str = reader.read();
+            str = getString(R.string.path_quiz);
+            //Spelling directory structure
+            File path = new File(context.getFilesDir(), str);
+            boolean res = false;
+            if(!path.exists())
+                res = path.mkdirs();
+            //Copy initial files from assets
+            File file = new File(path, getString(R.string.filename_quiz_manager));
+            if(file.exists())
+                file.delete();
+            res = file.createNewFile();
+            if(!res)
+                Log.wtf("MainActivity", "MainActivity.CreateInitialFileStruct: file.mkdirs return false");
+
+            XmlResourceParser xmlRes = getResources().getXml(R.xml.quiz_manager);
+            str = xmlRes.getText();
+            FileWriter writer = new FileWriter(file,false);
+            writer.write(str);
+            writer.close();
+
         }
         catch (Exception ex)
         {

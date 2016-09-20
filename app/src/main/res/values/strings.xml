@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Quizer</string>
     <string name="action_settings">Settings</string>
-    <string name="string_selectQuiz">Selct quize</string>
-    <string name="literal_filepath_quiz_settings" translatable="false">quiz/quiz_settings.xml</string>
-    <string name="literal_app_preferences_filename" translatable="false">preferences.xml</string>
+    <string name="string_selectQuiz">Select quize</string>
+    <string name="filename_quiz_manager" translatable="false">quiz_manager.xml</string>
+    <string name="filename_app_preferences" translatable="false">preferences.xml</string>
+    <string name="path_quiz" translatable="false">quiz</string>
+    <string name="path_assets_flagquiz" translatable="false">Quiz/FlagQuiz</string>
     <string name="settings_flag_inited" translatable="false">inited</string>
 </resources>
