@@ -5,6 +5,6 @@
     <string name="filename_quiz_manager" translatable="false">quiz_manager.xml</string>
     <string name="filename_app_preferences" translatable="false">preferences.xml</string>
     <string name="path_quiz" translatable="false">quiz</string>
-    <string name="path_assets_flagquiz" translatable="false">Quiz/FlagQuiz</string>
+    <string name="path_assets_quiz" translatable="false">Quiz</string>
     <string name="settings_flag_inited" translatable="false">inited</string>
 </resources>
