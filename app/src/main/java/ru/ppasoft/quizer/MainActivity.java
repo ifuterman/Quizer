@@ -11,6 +11,7 @@ import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -24,17 +25,22 @@ import java.util.List;
 
 import android.content.Context;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
+
 public class MainActivity extends AppCompatActivity
 {
     public static String APPINITED = "key";
     private int MAX_RECURSION_DEPTH = 10;
     private int RECURSION_COUNTER_ASSETS = 0;
+    public QuizManager manager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        CreateInitialFileStruct();
 
+        Init();
+        test();
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -74,9 +80,9 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences preferences = context.getSharedPreferences(preferencesFileName,context.MODE_PRIVATE);
         boolean fInited = false;
         fInited =  preferences.getBoolean(APPINITED, false);
-        if(fInited)
-            return;
-        CreateInitialFileStruct();//Creating initial file structure
+        if(!fInited)
+            CreateInitialFileStruct();//Creating initial file structure
+       // manager = QuizManager.createQuizManager(getApplicationContext());
     }
     //Creating initial files
     private void CreateInitialFileStruct()
@@ -140,6 +146,51 @@ public class MainActivity extends AppCompatActivity
         {
             Log.e("MainActivity", "CreateInitialFileStruct()", ex);
         }
+
+
+    }
+
+    //TODO
+    private void test()
+    {
+        Context context = this.getApplicationContext();
+        String str;
+        //Loading quiz_manager.xml
+        str = context.getString(R.string.path_quiz);
+        String filePath = context.getFilesDir() + "/" + str + "/" + context.getString(R.string.filename_quiz_manager);
+        //XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+        //XmlPullParser parser = factory.newPullParser();
+      /*  File file = new File(filePath);
+        int res;
+        boolean f;
+        f = file.exists();
+        f = file.isFile();
+        f = file.canRead();
+        FileInputStream inputStream = new FileInputStream(file);
+        int size = inputStream.available();
+        byte[] buf = new byte[size];
+        res = inputStream.read(buf);
+        str = new String(buf);
+        InputStreamReader reader = new InputStreamReader(inputStream);
+
+        parser.setInput(reader);
+        int event = parser.getEventType();
+        while (event != XmlPullParser.END_DOCUMENT)
+        {
+            str = parser.getName();
+            event = parser.next();
+        }
+        event = 0;*/
+        try {
+
+            FileInputStream inputStream = new FileInputStream(filePath);
+            int size = inputStream.available();
+            inputStream.mark(0);
+            //   inputStream.reset();
+            size = inputStream.available();
+            size = 0;
+        }
+        catch (Exception ex){}
     }
 
     //Recursion for finding full paths and file names in assets section
