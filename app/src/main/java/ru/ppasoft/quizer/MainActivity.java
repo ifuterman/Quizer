@@ -158,6 +158,15 @@ public class MainActivity extends AppCompatActivity
         //Loading quiz_manager.xml
         str = context.getString(R.string.path_quiz);
         String filePath = context.getFilesDir() + "/" + str + "/" + context.getString(R.string.filename_quiz_manager);
+
+        File f = new File(filePath);
+
+        if(f.exists()) {
+            Log.i("FAFAFA", "ok");
+        }else{
+            Log.i("FAFAFA", "NOPE");
+        }
+
         //XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         //XmlPullParser parser = factory.newPullParser();
       /*  File file = new File(filePath);
@@ -182,15 +191,17 @@ public class MainActivity extends AppCompatActivity
         }
         event = 0;*/
         try {
-
             FileInputStream inputStream = new FileInputStream(filePath);
+
             int size = inputStream.available();
             inputStream.mark(0);
             //   inputStream.reset();
             size = inputStream.available();
             size = 0;
+        }catch (Exception ex){
+            Log.i("FAFAFA", ex.getLocalizedMessage());
+
         }
-        catch (Exception ex){}
     }
 
     //Recursion for finding full paths and file names in assets section

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<QuizSettings xmlns:android="http://schemas.android.com/apk/res/android">
+<QuizSettings>
     <quizcollection>
         <quiz title="%string.FlagQuiz" image="FlagQuiz/FlagQuiz.png" qustion="image" answer="text" path="FlagQuiz"/>
     </quizcollection>

@@ -6,11 +6,7 @@ import android.util.Log;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 
 /**
@@ -18,7 +14,7 @@ import java.util.HashMap;
  */
 public class QuizManager
 {
-    public final static String TAG_QUIZ = "quiz";
+    public final static String TAG_QUIZ = "Quiz";
     private HashMap<String, Quiz> mQuizMap;
     public static QuizManager createQuizManager(Context context)
     {
