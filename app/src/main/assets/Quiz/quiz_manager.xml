@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<QuizSettings xmlns:android="http://schemas.android.com/apk/res/android">
+<quizsettings xmlns:android="http://schemas.android.com/apk/res/android">
+    <localization>
+        <localstring key="FlagQuiz" ru="Флаги!" en="Flags!"/>
+    </localization>
     <quizcollection>
-        <quiz title="%string.FlagQuiz" image="FlagQuiz/FlagQuiz.png" qustion="image" answer="text" path="FlagQuiz"/>
+        <quiz title="FlagQuiz" image="FlagQuiz.png" question="image" answer="text" path="FlagQuiz"/>
     </quizcollection>
-    <Localization>
-        <string key="FlagQuiz" ru="Флаги!" en="Flags!"/>
-    </Localization>
-</QuizSettings>
+</quizsettings>
