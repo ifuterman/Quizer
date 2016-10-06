@@ -10,18 +10,18 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 
 /**
  * Created by ifuterman on 11.09.2016.
+ * For what is this class?
  */
-public class QuizManager {
-    public final static String TAG_QUIZ = "quiz";
-    public final static String TAG_LOCALSTRING = "localstring";
-    public final static String TAG_LOCALIZATION = "localization";
-    public final static String TAG_QUIZCOLLECTION = "quizcollection";
-    public final static String TAGPROPERTY_KEY = "key";
+class QuizManager {
+    private final static String TAG_QUIZ = "quiz";
+    private final static String TAG_LOCALSTRING = "localstring";
+    private final static String TAG_LOCALIZATION = "localization";
+    private final static String TAG_QUIZCOLLECTION = "quizcollection";
+    private final static String TAGPROPERTY_KEY = "key";
     private HashMap<String, HashMap<String, String>> localizationMap;
     private HashMap<String, Quiz> mQuizMap;
 
@@ -29,7 +29,7 @@ public class QuizManager {
 
     }
 
-    public static QuizManager createQuizManager(Context context)//class factory
+    static QuizManager createQuizManager(Context context)//class factory
     {
         try {
             QuizManager manager = new QuizManager();
@@ -43,8 +43,8 @@ public class QuizManager {
         return null;
     }
 
-    protected boolean init(Context context) throws Exception {
-        boolean res = true;
+    private boolean init(Context context) throws Exception {
+        //boolean res = true;
         localizationMap = new HashMap<>();
         mQuizMap = new HashMap<>();
         String str;
@@ -78,14 +78,15 @@ public class QuizManager {
             event = parser.next();
         }
         reader.close();
-        return res;
+        return true;
     }
 
-    protected void parseLocalization(XmlPullParser parser) throws Exception    //pars localization section
+    private void parseLocalization(XmlPullParser parser) throws Exception    //pars localization section
     {
         String tag, property, key, value;
         key = "";
         boolean flagStop = false;
+        //  TODO Valerius - что ты имел в виду count=0, когда применяешь его в цикле for (int i = 0; i < count; i++) {
         int count = 0;
         int event = parser.getEventType();
         while (event != XmlPullParser.END_DOCUMENT && !flagStop) {
@@ -108,48 +109,43 @@ public class QuizManager {
                     }
                     localizationMap.put(key, mapPair);
                 }
-            }
-            else if (event == XmlPullParser.END_TAG && tag.compareTo(TAG_LOCALIZATION) == 0)
+            } else if (event == XmlPullParser.END_TAG && tag.compareTo(TAG_LOCALIZATION) == 0)
                 flagStop = true;
             event = parser.next();
         }
     }
 
-    protected void parseQuizCollection(XmlPullParser parser, Context context) throws Exception
-    {
+    private void parseQuizCollection(XmlPullParser parser, Context context) throws Exception {
         String tag, property, key, value;
         key = "";
         boolean flagStop = false;
         int count = 0;
         int event = parser.getEventType();
-        while (event != XmlPullParser.END_DOCUMENT && !flagStop)
-        {
+        while (event != XmlPullParser.END_DOCUMENT && !flagStop) {
             tag = parser.getName();
             if (event == XmlPullParser.START_TAG) {
                 if (tag == null) {
                     event = parser.next();
                     continue;
                 }
-                if (tag.compareTo(TAG_QUIZ) == 0)
-                {
-                    Quiz quiz = Quiz.createQuiz(parser,context);
-                    if(quiz != null)
+                if (tag.compareTo(TAG_QUIZ) == 0) {
+                    Quiz quiz = Quiz.createQuiz(parser, context);
+                    if (quiz != null)
                         mQuizMap.put(quiz.getTitle(), quiz);
                 }
-            }
-            else if (event == XmlPullParser.END_TAG && tag.compareTo(TAG_QUIZCOLLECTION) == 0)
+            } else if (event == XmlPullParser.END_TAG && tag.compareTo(TAG_QUIZCOLLECTION) == 0)
                 flagStop = true;
             event = parser.next();
         }
     }
-    public Set<String> getQuizTitleSet()
-    {
+
+    Set<String> getQuizTitleSet() {
         return mQuizMap.keySet();
     }
-    public Quiz getQuiz(String title)
-    {
+
+    Quiz getQuiz(String title) {
         Quiz res = null;
-        if(mQuizMap.containsKey(title))
+        if (mQuizMap.containsKey(title))
             res = mQuizMap.get(title);
         return res;
     }
