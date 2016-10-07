@@ -1,6 +1,10 @@
 package ru.ppasoft.quizer;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -8,13 +12,11 @@ import org.xmlpull.v1.XmlPullParser;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
-/**
- * Created by ifuterman on 11.09.2016.
- */
 //Класс викторины
-public class Quiz
+class Quiz
 {
     private final static String TAG_QUIZ = "quiz";
     private final static String TAGPROPERTY_TITLE = "title";
@@ -31,7 +33,7 @@ public class Quiz
 
     public static Quiz createQuiz(XmlPullParser parser, Context context)
     {
-        Quiz quiz = null;
+        Quiz quiz;
         try
         {
             quiz = new Quiz(parser, context);
@@ -50,7 +52,7 @@ public class Quiz
         String image = "";
         String path = "";
         boolean flagStop = false;
-        int count = 0;
+        int count;
         int event = parser.getEventType();
         while (event != XmlPullParser.END_DOCUMENT && !flagStop) {
             tag = parser.getName();
@@ -88,7 +90,12 @@ public class Quiz
                     String imagePath = context.getFilesDir() + "/" +
                             context.getString(R.string.path_quiz) + "/" + path + "/" + image;
                     //Loading quiz image
-                    quizDrawable = Drawable.createFromPath(imagePath);
+
+                    //quizDrawable = BitmapDrawable.createFromPath(imagePath);//.createFromPath(imagePath);
+                    Bitmap bmp = BitmapFactory.decodeFile(imagePath);
+                    quizDrawable = new BitmapDrawable(context.getResources(), bmp);
+
+
                     quizTitle = title;
                 }
             }

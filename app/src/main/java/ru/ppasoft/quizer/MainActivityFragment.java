@@ -59,6 +59,7 @@ public class MainActivityFragment extends Fragment
             idQuizList.put(currentId, quiz);
             imageButton.setImageDrawable(quiz.getQuizDrawable());
             imageButton.setLayoutParams(paramsButton);
+
             layout.addView(imageButton);
 
             TextView textView = new TextView(getContext());
