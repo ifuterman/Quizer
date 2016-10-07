@@ -9,6 +9,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -152,6 +153,10 @@ public class QuizManager {
         if(mQuizMap.containsKey(title))
             res = mQuizMap.get(title);
         return res;
+    }
+
+    public List<Quiz> asList() {
+        return new ArrayList<>(mQuizMap.values());
     }
 
 }

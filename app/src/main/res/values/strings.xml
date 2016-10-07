@@ -7,4 +7,6 @@
     <string name="path_quiz" translatable="false">Quiz</string>
     <string name="path_assets_quiz" translatable="false">Quiz</string>
     <string name="settings_flag_inited" translatable="false">inited</string>
+    <string name="empty_list">Empty</string>
+
 </resources>

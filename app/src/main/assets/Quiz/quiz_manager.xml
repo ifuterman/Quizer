@@ -4,6 +4,20 @@
         <localstring key="FlagQuiz" ru="Флаги!" en="Flags!"/>
     </localization>
     <quizcollection>
-        <quiz title="FlagQuiz" image="FlagQuiz.png" question="image" answer="text" path="FlagQuiz"/>
+        <quiz title="FlagQuiz1" image="FlagQuiz.png" question="image" answer="text1" path="FlagQuiz"/>
+        <quiz title="FlagQuiz2" image="FlagQuiz.png" question="image" answer="text2" path="FlagQuiz"/>
+        <quiz title="FlagQuiz3" image="FlagQuiz.png" question="image" answer="text3" path="FlagQuiz"/>
+        <quiz title="FlagQuiz4" image="FlagQuiz.png" question="image" answer="text4" path="FlagQuiz"/>
+        <quiz title="FlagQuiz5" image="FlagQuiz.png" question="image" answer="text5" path="FlagQuiz"/>
+        <quiz title="FlagQuiz6" image="FlagQuiz.png" question="image" answer="text6" path="FlagQuiz"/>
+        <quiz title="FlagQuiz7" image="FlagQuiz.png" question="image" answer="text7" path="FlagQuiz"/>
+        <quiz title="FlagQuiz8" image="FlagQuiz.png" question="image" answer="text8" path="FlagQuiz"/>
+        <quiz title="FlagQuiz9" image="FlagQuiz.png" question="image" answer="text9" path="FlagQuiz"/>
+        <quiz title="FlagQuiz10" image="FlagQuiz.png" question="image" answer="text10" path="FlagQuiz"/>
+        <quiz title="FlagQuiz11" image="FlagQuiz.png" question="image" answer="text11" path="FlagQuiz"/>
+        <quiz title="FlagQuiz12" image="FlagQuiz.png" question="image" answer="text12" path="FlagQuiz"/>
+        <quiz title="FlagQuiz13" image="FlagQuiz.png" question="image" answer="text13" path="FlagQuiz"/>
+        <quiz title="FlagQuiz14" image="FlagQuiz.png" question="image" answer="text14" path="FlagQuiz"/>
+        <quiz title="FlagQuiz15" image="FlagQuiz.png" question="image" answer="text15" path="FlagQuiz"/>
     </quizcollection>
 </quizsettings>

@@ -13,27 +13,18 @@
     android:orientation="vertical"
     android:gravity="fill">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView" >
+    <ListView
+        android:id="@id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/quizSelectLinearLayout"
-            android:textAlignment="center">
+    <TextView
+        android:id="@id/android:empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/empty_list" >
+    </TextView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/string_selectQuiz"
-                android:id="@+id/textView"
-                android:layout_gravity="center"
-                android:gravity="top|center" />
-
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>
