@@ -1,5 +1,4 @@
 package ru.ppasoft.quizer;
-
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.XmlResourceParser;
@@ -35,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     private int MAX_RECURSION_DEPTH = 10;
     private int RECURSION_COUNTER_ASSETS = 0;
     public static QuizManager manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

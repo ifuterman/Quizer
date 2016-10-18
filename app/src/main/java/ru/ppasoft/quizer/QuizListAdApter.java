@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,13 +19,13 @@ import java.util.List;
  * Created by valerius on 10/7/16.
  */
 
-public class QuizListAdApter extends BaseAdapter {
+class QuizListAdApter extends BaseAdapter {
 
-    Context mCtx;
-    List<Quiz> mQuizList;
+    private Context mCtx;
+    private List<Quiz> mQuizList;
     private static final DateFormat DF = SimpleDateFormat.getTimeInstance();
 
-    public QuizListAdApter(Context ctx, List<Quiz> quizList) {
+    QuizListAdApter(Context ctx, List<Quiz> quizList) {
         this.mCtx = ctx;
         this.mQuizList = quizList;
     }
@@ -53,12 +54,12 @@ public class QuizListAdApter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.quiz_list_item, null);
         }
 
-        final ImageView imgIcon = (ImageView) convertView.findViewById(R.id.flag_image);
-        final TextView txtTitle = (TextView) convertView.findViewById(R.id.dt_touched);
+        final ImageButton imgButton = (ImageButton) convertView.findViewById(R.id.imageButtonnQuizImage);
+        final TextView txtTitle = (TextView) convertView.findViewById(R.id.itemTextQuizTitle);
 
         final Quiz row_pos = mQuizList.get(position);
         // setting the image resource and title
-        imgIcon.setImageDrawable(row_pos.getQuizDrawable());
+        imgButton.setImageDrawable(row_pos.getQuizDrawable());
         txtTitle.setText(row_pos.getTitle());
 
         // Turn screen, scroll list - see, that only visible rows are retrieving

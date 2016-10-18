@@ -1,23 +1,21 @@
 package ru.ppasoft.quizer;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.util.Log;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import ru.ppasoft.quizer.ru.ppasoft.quizer.data.QuizerContentProvider;
+
 /**
  * Created by ifuterman on 11.09.2016.
+ * class for quiz handling
  */
-public class QuizManager {
+class QuizManager {
     public final static String TAG_QUIZ = "quiz";
     public final static String TAG_LOCALSTRING = "localstring";
     public final static String TAG_LOCALIZATION = "localization";
@@ -25,26 +23,24 @@ public class QuizManager {
     public final static String TAGPROPERTY_KEY = "key";
     private HashMap<String, HashMap<String, String>> localizationMap;
     private HashMap<String, Quiz> mQuizMap;
+    private QuizerDataWrapper dataWrapper = new QuizerDataWrapper();
 
     private QuizManager() {
+        dataWrapper.initDataManager();
 
     }
 
-    public static QuizManager createQuizManager(Context context)//class factory
+    static QuizManager createQuizManager(Context context)//class factory
     {
         try {
             QuizManager manager = new QuizManager();
-            boolean res = manager.init(context);
-            if (!res)
-                return null;
             return manager;
         } catch (Exception ex) {
             Log.wtf("QuizManager", "QuizManager (Context context) throws " + ex.toString());
         }
         return null;
     }
-
-    protected boolean init(Context context) throws Exception {
+   /* protected boolean init(Context context) throws Exception {
         boolean res = true;
         localizationMap = new HashMap<>();
         mQuizMap = new HashMap<>();
@@ -80,9 +76,9 @@ public class QuizManager {
         }
         reader.close();
         return res;
-    }
+    }*/
 
-    protected void parseLocalization(XmlPullParser parser) throws Exception    //pars localization section
+    /*protected void parseLocalization(XmlPullParser parser) throws Exception    //pars localization section
     {
         String tag, property, key, value;
         key = "";
@@ -142,7 +138,7 @@ public class QuizManager {
                 flagStop = true;
             event = parser.next();
         }
-    }
+    }*/
     public Set<String> getQuizTitleSet()
     {
         return mQuizMap.keySet();
@@ -155,8 +151,26 @@ public class QuizManager {
         return res;
     }
 
-    public List<Quiz> asList() {
+    List<Quiz> asList() {
         return new ArrayList<>(mQuizMap.values());
     }
 
+    /**
+     * Created by ifuterman on 16.10.2016.
+     */
+
+    private class QuizerDataWrapper {
+        QuizerContentProvider provider = new QuizerContentProvider();
+        boolean initDataManager() {//Initialization of QuizManager
+            boolean res = true;
+            try {
+                Cursor cursor = provider.getAllQuizInfo();
+            }
+            catch (Exception ex){
+                Log.wtf("QuizerDataWrapper", "initDataManager", ex);
+                res = false;
+            }
+            return res;
+        }
+    }
 }

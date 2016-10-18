@@ -1,6 +1,9 @@
 package ru.ppasoft.quizer;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
@@ -12,9 +15,10 @@ import java.util.ArrayList;
 
 /**
  * Created by ifuterman on 11.09.2016.
+ * Класс викторины
  */
-//Класс викторины
-public class Quiz
+
+class Quiz
 {
     private final static String TAG_QUIZ = "quiz";
     private final static String TAGPROPERTY_TITLE = "title";
@@ -27,7 +31,7 @@ public class Quiz
     {
         return quizTitle;
     }
-    public Drawable getQuizDrawable() {return quizDrawable;}
+    Drawable getQuizDrawable() {return quizDrawable;}
 
     public static Quiz createQuiz(XmlPullParser parser, Context context)
     {
@@ -88,7 +92,8 @@ public class Quiz
                     String imagePath = context.getFilesDir() + "/" +
                             context.getString(R.string.path_quiz) + "/" + path + "/" + image;
                     //Loading quiz image
-                    quizDrawable = Drawable.createFromPath(imagePath);
+                    Bitmap bmp = BitmapFactory.decodeFile(imagePath);
+                    quizDrawable = new BitmapDrawable(context.getResources(), bmp);
                     quizTitle = title;
                 }
             }
